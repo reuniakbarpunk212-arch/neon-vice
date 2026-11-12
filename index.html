@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Vice (VICE) — Precinct 56 Most Wanted Board · BSC</title>
+<meta name="description" content="Neon Vice: 2,500 mugshot NFTs booked on BNB Smart Chain. 1,200 free for Agent ID holders and verified X accounts; bail 0.001 BNB, 100% to the treasury. No waitlist.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --asphalt:#101014; --panel:#17171e; --panel2:#1d1d26; --line:#33333f;
+    --paper:#d8d4c8; --dim:#9a97a8; --pink:#ff2e88; --cyan:#2fd4e8; --stamp:#ffb300;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--asphalt);color:var(--paper);
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:15.5px;line-height:1.6}
+  .wrap{max-width:920px;margin:0 auto;padding:28px 20px 44px}
+  .precinct{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+    border:1px solid var(--line);border-bottom:none;padding:8px 14px;font-size:12px;
+    letter-spacing:.18em;color:var(--dim);text-transform:uppercase;background:var(--panel)}
+  .boardhead{border:1px solid var(--line);background:
+    repeating-linear-gradient(0deg, transparent 0 34px, rgba(255,255,255,.018) 34px 35px), var(--panel);
+    padding:26px 22px 20px;text-align:left;position:relative}
+  .stamp{position:absolute;top:16px;right:16px;border:2px solid var(--pink);color:var(--pink);
+    padding:2px 10px;font-family:"Special Elite",monospace;letter-spacing:.14em;font-size:13px;
+    transform:rotate(3deg)}
+  h1{font-family:"Special Elite",monospace;font-weight:400;font-size:clamp(34px,6.4vw,56px);
+    margin:0;line-height:1.05;letter-spacing:.02em;color:#fff;
+    text-shadow:0 0 14px rgba(47,212,232,.35)}
+  h1 .pink{color:var(--pink);text-shadow:0 0 14px rgba(255,46,136,.45)}
+  .sub{color:var(--dim);max-width:640px;margin:10px 0 0}
+  h2{font-family:"Special Elite",monospace;font-weight:400;font-size:21px;letter-spacing:.06em;
+    margin:34px 0 10px;color:#fff;border-bottom:1px dashed var(--line);padding-bottom:6px}
+  h2::before{content:"▸ ";color:var(--pink)}
+  h3{font-family:"Special Elite",monospace;font-weight:400;font-size:17px;margin:0 0 6px;color:var(--cyan)}
+  table{width:100%;border-collapse:collapse}
+  table.rec td{border-bottom:1px dashed var(--line);padding:6px 4px}
+  table.rec td.n{text-align:right;font-weight:600;color:#fff;font-variant-numeric:tabular-nums}
+  .files{display:flex;gap:12px;flex-wrap:wrap}
+  .file{flex:1 1 150px;border:1px solid var(--line);background:var(--panel2);padding:12px 12px 10px;position:relative}
+  .file .bignum{font-family:"Special Elite",monospace;font-size:26px;color:#fff}
+  .file .charge{font-size:13px;color:var(--dim);min-height:58px}
+  .file .barcode{height:22px;margin-top:8px;background:
+    repeating-linear-gradient(90deg,#cfccc2 0 2px,transparent 2px 5px,#cfccc2 5px 6px,transparent 6px 10px,#cfccc2 10px 13px,transparent 13px 15px)}
+  .file .status{font-size:11px;letter-spacing:.16em;color:var(--stamp);text-transform:uppercase}
+  .desk{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:680px){.desk{grid-template-columns:1fr}}
+  .cell{border:1px solid var(--line);background:var(--panel);padding:16px 18px}
+  button{font-family:"Special Elite",monospace;font-size:15px;letter-spacing:.04em;cursor:pointer;
+    background:var(--pink);color:#fff;border:1px solid var(--pink);padding:10px 16px}
+  button:hover{background:transparent;color:var(--pink)}
+  button.ghost{background:transparent;color:var(--cyan);border-color:var(--cyan)}
+  button.ghost:hover{background:var(--cyan);color:#06222a}
+  button:disabled{opacity:.4;cursor:not-allowed}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0;align-items:center}
+  input[type=text]{width:100%;font-family:inherit;font-size:14.5px;padding:9px 10px;background:#0c0c10;
+    border:1px solid var(--line);color:var(--paper)}
+  select{font-family:inherit;font-size:15px;padding:8px;background:#0c0c10;border:1px solid var(--line);color:var(--paper)}
+  #statusBox{border:1px dashed #565664;background:var(--panel);padding:11px 14px;margin:14px 0;min-height:26px}
+  .small{font-size:13.5px;color:var(--dim)}
+  .mono{font-size:12.5px;word-break:break-all}
+  .tag{display:inline-block;border:1px solid var(--stamp);color:var(--stamp);font-size:11.5px;
+    letter-spacing:.14em;padding:1px 8px;text-transform:uppercase}
+  #diag{font-size:11.5px;color:var(--dim);margin-top:20px}
+  .foot{font-size:13px;color:var(--dim)}
+  a{color:var(--cyan)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="precinct">
+    <span>Precinct 56 · BNB Smart Chain Division</span>
+    <span>Case file: Neon Vice</span>
+    <span>Open intake — no waitlist</span>
+  </div>
+  <div class="boardhead">
+    <span class="stamp">WANTED</span>
+    <h1>MOST WANTED <span class="pink">BOARD</span></h1>
+    <p class="sub">Subject: <b>Neon Vice (VICE)</b> — 2,500 mugshots at large on the BNB Smart Chain.
+    Last seen loitering near the mint page. Approach with a connected wallet. The precinct offers
+    1,200 of them free — 800 to Agent ID holders, 400 to verified X accounts — and posts bail at
+    0.001 BNB for the rest. All bail money is forwarded to the treasury in the same transaction.
+    This department keeps nothing.</p>
+  </div>
+
+  <h2>Arrest Record</h2>
+  <table class="rec">
+    <tr><td>Mugshots booked so far</td><td class="n" id="stTotal">—</td></tr>
+    <tr><td>Still at large (of 2,500)</td><td class="n" id="stLeft">—</td></tr>
+    <tr><td>Free surrenders left — Agent ID (of 800)</td><td class="n" id="stAgentLeft">—</td></tr>
+    <tr><td>Free surrenders left — verified X (of 400)</td><td class="n" id="stXLeft">—</td></tr>
+    <tr><td>Bail posted (paid bookings)</td><td class="n" id="stPaid">—</td></tr>
+    <tr><td>Informant bonuses issued</td><td class="n" id="stRefMinted">—</td></tr>
+    <tr><td>Mugshots in your custody</td><td class="n" id="stMine">connect a wallet</td></tr>
+  </table>
+
+  <h2>Booking Files — Samples from the Board</h2>
+  <div class="files">
+    <div class="file"><div class="bignum">#0001</div><div class="charge">Charge: impersonating a blue chip. Known associate of several rugs.</div><div class="status">Status: at large</div><div class="barcode"></div></div>
+    <div class="file"><div class="bignum">#0042</div><div class="charge">Charge: jaywalking the mempool at 03:12. Did not look either way.</div><div class="status">Status: at large</div><div class="barcode"></div></div>
+    <div class="file"><div class="bignum">#0560</div><div class="charge">Charge: loitering at the mint page with intent to snipe.</div><div class="status">Status: at large</div><div class="barcode"></div></div>
+    <div class="file"><div class="bignum">#1313</div><div class="charge">Charge: possession of unregistered neon. Glows without a licence.</div><div class="status">Status: at large</div><div class="barcode"></div></div>
+    <div class="file"><div class="bignum">#2500</div><div class="charge">Charge: being the last one on the board. Considered extremely wanted.</div><div class="status">Status: at large</div><div class="barcode"></div></div>
+  </div>
+  <p class="small">Every booking number from #0001 to #2500 is issued in order, to whoever shows up —
+  free lane, bail lane, or informant bonus. The file art is generated on-chain; no two files alike,
+  none of them worth a satoshi more than the next. The department does not do rarity.</p>
+
+  <h2>Intake Desk</h2>
+  <div class="btnrow">
+    <button id="connectInj">Identify yourself — browser wallet</button>
+    <button id="connectWC" class="ghost">Identify yourself — WalletConnect</button>
+  </div>
+  <div id="statusBox">Front desk is staffed. Connect a wallet to surrender, claim, or post bail.</div>
+
+  <div class="desk">
+    <div class="cell">
+      <h3>Turn Yourself In — Agent ID (Free)</h3>
+      <p class="small">One free mugshot per wallet holding a Binance Agent ID on BSC. The registry is
+      checked on-chain at the desk. No forms, no line, no waitlist.</p>
+      <button id="claimAgentBtn">Surrender — Agent ID</button>
+    </div>
+    <div class="cell">
+      <h3>Turn Yourself In — Verified X (Free)</h3>
+      <p class="small">One free mugshot per verified (blue) X account. Post a note containing this page's
+      address and your file mark — the last six characters of your wallet address:
+      <b class="mono" id="xCode">(connect to see your mark)</b> — then paste the post's link below.</p>
+      <div class="btnrow"><button id="xCompose" class="ghost">Compose the post</button></div>
+      <input type="text" id="tweetUrl" placeholder="https://x.com/yourhandle/status/…">
+      <div class="btnrow"><button id="claimXBtn">Verify &amp; surrender — X</button></div>
+    </div>
+  </div>
+
+  <h2>Post Bail — 0.001 BNB</h2>
+  <div class="cell">
+    <p>Bookings beyond the free lanes are released on bail at <b>0.001 BNB</b> each, up to ten per
+    transaction. The full amount is forwarded to the treasury inside the same transaction; the
+    precinct's till is empty by design. <span class="tag">100% to treasury</span></p>
+    <div class="btnrow">
+      <select id="buyCount">
+        <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+        <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+      </select>
+      <button id="buyBtn">Post bail — <span id="buyCost">0.001</span> BNB</button>
+    </div>
+    <p class="small">Brought in by somebody else's link? Their address rides along in the page address
+    and is written into the file as the referring officer — automatically.</p>
+  </div>
+
+  <h2>Informant Desk</h2>
+  <div class="cell">
+    <p>The department rewards information. Every five paid bookings that come in through your link
+    earn you one mugshot, gratis. Your link and your record appear once you identify yourself.</p>
+    <input type="text" id="refLink" readonly value="(connect to receive your link)">
+    <table class="rec" style="margin-top:8px">
+      <tr><td>Paid bookings through your link</td><td class="n" id="refCount">—</td></tr>
+      <tr><td>Bonus mugshots awaiting collection</td><td class="n" id="refPending">—</td></tr>
+    </table>
+    <div class="btnrow">
+      <button id="claimBonusBtn">Collect informant bonus</button>
+      <button id="shareBtn" class="ghost">Share on X</button>
+    </div>
+  </div>
+
+  <h2>Evidence Tag</h2>
+  <p class="foot">Neon Vice (VICE) · BNB Smart Chain (56)<br>
+  Contract: <span class="mono">0x55eEFba7263Fa518f11A6cDAAe4c403B082DB3fE</span></p>
+  <p class="foot">Department notice: a mugshot is a collectible picture, not a promise, a share, or a
+  get-out-of-anything card. It will probably be worth nothing. Post bail only with money you can
+  afford to never see again — the treasury does not issue refunds and neither does the night.</p>
+  <p id="diag">precinct terminal: booting…</p>
+</div>
+<script>
+// ===== Neon Vice — zero external JS libraries. Raw EIP-1193 + fetch JSON-RPC. =====
+var CONTRACT = "0x55eEFba7263Fa518f11A6cDAAe4c403B082DB3fE";
+var SITE_URL = "https://reuniakbarpunk212-arch.github.io/neon-vice/";
+var PERMIT_URL = "https://permit-worker.reuniakbarpunk212.workers.dev/vice/permit";
+var WC_PROJECT_ID = "ff5985647ed78916bed0155d2ff84a1c";
+var RPCS = ["https://bsc-dataseed.binance.org", "https://bsc-dataseed1.binance.org", "https://bsc-rpc.publicnode.com"];
+var PRICE = 1000000000000000n;
+var SEL = { status:"0x200d2ed2", claimAgent:"0x481a19e1", claimX:"0xb3b5b4fe", mint:"0x94bf804d",
+            refPaid:"0xb851d7ea", refPending:"0x3bf1fc2d", claimBonus:"0x1e375ab9", balanceOf:"0x70a08231" };
+var activeProvider = null, account = null, connecting = false;
+
+function $(id){ return document.getElementById(id); }
+function fmt(n){ return Number(n).toLocaleString("en-US"); }
+function diag(m){ var d = $("diag"); if (d) d.textContent = "precinct terminal: " + m; }
+function status(m){ $("statusBox").innerHTML = m; }
+function padAddr(a){ return "000000000000000000000000" + a.replace(/^0x/i,"").toLowerCase(); }
+function padUint(v){ var h = BigInt(v).toString(16); while (h.length < 64) h = "0" + h; return h; }
+function words(hex){ var out = [], h = hex.replace(/^0x/i,"");
+  for (var i = 0; i + 64 <= h.length; i += 64) out.push(BigInt("0x" + h.substr(i, 64))); return out; }
+function short(a){ return a.slice(0,6) + "…" + a.slice(-4); }
+function walletCode(){ return account ? account.replace(/^0x/i,"").slice(-6).toLowerCase() : ""; }
+function referrer(){ try{ var q = new URLSearchParams(location.search).get("ref");
+  if (q && /^0x[0-9a-fA-F]{40}$/.test(q)) return q; }catch(e){}
+  return "0x0000000000000000000000000000000000000000"; }
+
+// ---- read-only RPC (no wallet needed) ----
+async function rpcCall(data){
+  var lastErr = null;
+  for (var i = 0; i < RPCS.length; i++){
+    try{
+      var r = await fetch(RPCS[i], { method:"POST", headers:{"content-type":"application/json"},
+        body: JSON.stringify({ jsonrpc:"2.0", id:1, method:"eth_call", params:[{ to:CONTRACT, data:data }, "latest"] }) });
+      var j = await r.json();
+      if (j.result) return j.result;
+      lastErr = new Error(j.error ? j.error.message : "empty result");
+    }catch(e){ lastErr = e; }
+  }
+  throw lastErr || new Error("RPC unreachable");
+}
+async function rpcMethod(method, params){
+  for (var i = 0; i < RPCS.length; i++){
+    try{
+      var r = await fetch(RPCS[i], { method:"POST", headers:{"content-type":"application/json"},
+        body: JSON.stringify({ jsonrpc:"2.0", id:1, method:method, params:params }) });
+      var j = await r.json();
+      if (j.result !== undefined) return j.result;
+    }catch(e){}
+  }
+  return null;
+}
+async function waitReceipt(hash){
+  for (var i = 0; i < 40; i++){
+    var rc = await rpcMethod("eth_getTransactionReceipt", [hash]);
+    if (rc) return rc.status === "0x1";
+    await new Promise(function(res){ setTimeout(res, 3000); });
+  }
+  return null;
+}
+
+// status() tuple: 0 totalMinted, 1 agentFreeUsed, 2 xFreeUsed, 3 paidSold,
+// 4 referralMinted, 5 cap, 6 priceWei, 7 agentFreeCap, 8 xFreeCap
+async function refreshStats(){
+  try{
+    var w = words(await rpcCall(SEL.status));
+    $("stTotal").textContent = fmt(w[0]);
+    $("stLeft").textContent = fmt(w[5] - w[0]);
+    $("stAgentLeft").textContent = fmt(w[7] - w[1]);
+    $("stXLeft").textContent = fmt(w[8] - w[2]);
+    $("stPaid").textContent = fmt(w[3]);
+    $("stRefMinted").textContent = fmt(w[4]);
+    diag("arrest record read from the chain");
+    if (account) refreshMine();
+  }catch(e){ diag("record unavailable: " + (e.message || e)); }
+}
+async function refreshMine(){
+  if (!account) return;
+  try{
+    var b = words(await rpcCall(SEL.balanceOf + padAddr(account)));
+    $("stMine").textContent = fmt(b[0]);
+    var rp = words(await rpcCall(SEL.refPaid + padAddr(account)));
+    $("refCount").textContent = fmt(rp[0]);
+    var pd = words(await rpcCall(SEL.refPending + padAddr(account)));
+    $("refPending").textContent = fmt(pd[0]);
+    $("claimBonusBtn").disabled = pd[0] === 0n;
+    $("refLink").value = SITE_URL + "?ref=" + account;
+    $("xCode").textContent = walletCode();
+  }catch(e){}
+}
+
+// ---- sending transactions ----
+async function sendTx(data, valueWei, label){
+  if (!activeProvider || !account) throw new Error("Connect a wallet first.");
+  var value = valueWei && valueWei !== 0n ? "0x" + valueWei.toString(16) : "0x0";
+  status(label + " — sign in your wallet to proceed…");
+  var hash = await activeProvider.request({ method:"eth_sendTransaction",
+    params:[{ from: account, to: CONTRACT, data: data, value: value }] });
+  status(label + " — filed. Tx: <span class='mono'>" + hash + "</span> · waiting on the chain…");
+  var ok = await waitReceipt(hash);
+  if (ok === true) status(label + " — confirmed on-chain. Board updated.");
+  else if (ok === false) status(label + " — transaction reverted. Nobody was booked.");
+  else status(label + " — filed; confirmation is slow. Tx: <span class='mono'>" + hash + "</span>");
+  refreshStats();
+  return hash;
+}
+
+// ---- connecting ----
+async function finishConnect(provider, label, accounts){
+  activeProvider = provider; account = accounts[0]; connecting = false;
+  $("connectInj").textContent = "✓ " + short(account);
+  $("connectWC").textContent = "Identified — " + label;
+  status("Identified: <span class='mono'>" + account + "</span>. The desk has your file open.");
+  diag(label + " connected · record refreshing");
+  if (provider.on){
+    provider.on("accountsChanged", function(a){
+      if (a && a.length){ account = a[0]; refreshMine(); }
+    });
+    provider.on("chainChanged", function(){ refreshStats(); });
+  }
+  refreshStats();
+}
+async function ensureBSC(provider){
+  try{
+    var ch = await provider.request({ method:"eth_chainId" });
+    if (ch !== "0x38") await provider.request({ method:"wallet_switchEthereumChain", params:[{ chainId:"0x38" }] });
+  }catch(e){}
+}
+async function connectInjected(){
+  if (!window.ethereum){ status("No browser wallet detected in this browser. Use WalletConnect instead."); return; }
+  try{
+    connecting = true;
+    var accs = await window.ethereum.request({ method:"eth_requestAccounts" });
+    await ensureBSC(window.ethereum);
+    await finishConnect(window.ethereum, "browser wallet", accs);
+  }catch(e){ connecting = false; status("Identification refused: " + (e.message || e)); }
+}
+// WalletConnect — library loaded lazily at click time (proven pattern), never a global UMD name.
+function loadScript(url, timeoutMs){
+  return new Promise(function(resolve, reject){
+    var s = document.createElement("script");
+    var t = setTimeout(function(){ s.remove(); reject(new Error("timeout")); }, timeoutMs);
+    s.src = url; s.async = true;
+    s.onload = function(){ clearTimeout(t); resolve(); };
+    s.onerror = function(){ clearTimeout(t); s.remove(); reject(new Error("load failed")); };
+    document.body.appendChild(s);
+  });
+}
+var WC_URLS = [
+  "https://unpkg.com/@walletconnect/ethereum-provider@2.21.0/dist/index.umd.js",
+  "https://cdn.jsdelivr.net/npm/@walletconnect/ethereum-provider@2.21.0/dist/index.umd.js"
+];
+function wcCtor(){
+  var ns = window["@walletconnect/ethereum-provider"];
+  return (ns && ns.EthereumProvider) ? ns.EthereumProvider : null;
+}
+async function connectWC(){
+  var btn = $("connectWC");
+  connecting = true;
+  try{
+    btn.disabled = true; btn.textContent = "Loading WalletConnect…";
+    status("Loading the WalletConnect library…");
+    if (!wcCtor()){
+      var ok = false;
+      for (var i = 0; i < WC_URLS.length && !ok; i++){
+        try{ await loadScript(WC_URLS[i], 20000); ok = !!wcCtor(); if (ok) diag("WalletConnect library loaded from: " + WC_URLS[i]); }catch(e){}
+      }
+      if (!ok) throw new Error("WalletConnect library could not be loaded from any source — check your connection and try again.");
+    }
+    var Ctor = wcCtor();
+    btn.textContent = "Opening WalletConnect…";
+    status("A WalletConnect window is opening — pick your wallet and approve there.");
+    var provider = await Ctor.init({
+      projectId: WC_PROJECT_ID, chains: [56], showQrModal: true,
+      metadata: { name: "Neon Vice (VICE)", description: "Precinct 56 most wanted board — mugshot NFTs on BSC",
+        url: SITE_URL, icons: [] }
+    });
+    await provider.connect();
+    var accs = (provider.accounts && provider.accounts.length) ? provider.accounts
+      : await provider.request({ method:"eth_accounts" });
+    if (!accs || !accs.length) throw new Error("WalletConnect returned no account");
+    await finishConnect(provider, "WalletConnect", accs);
+  }catch(e){
+    status("WalletConnect failed: " + (e.message || e));
+    btn.textContent = "Identify yourself — WalletConnect"; btn.disabled = false; connecting = false;
+  }
+}
+
+// ---- the three lanes ----
+async function claimAgent(){
+  try{ await sendTx(SEL.claimAgent, 0n, "Agent ID free surrender"); }
+  catch(e){ status("Surrender failed: " + (e.message || e)); }
+}
+function strTail(s){
+  var bytes = new TextEncoder().encode(s), hex = "";
+  for (var i = 0; i < bytes.length; i++) hex += bytes[i].toString(16).padStart(2, "0");
+  var padded = hex; while (padded.length % 64) padded += "0";
+  return { tail: padUint(bytes.length) + padded, size: 32 + padded.length / 2 };
+}
+function bytesTail(hexStr){
+  var h = hexStr.replace(/^0x/i, ""), padded = h;
+  while (padded.length % 64) padded += "0";
+  return padUint(h.length / 2) + padded;
+}
+function claimXData(handle, deadline, sig){
+  var s = strTail(handle);
+  return SEL.claimX + padUint(96) + padUint(BigInt(deadline)) + padUint(96 + s.size) + s.tail + bytesTail(sig);
+}
+async function claimX(){
+  if (!account){ status("Identify yourself first — the permit is bound to your wallet."); return; }
+  var url = $("tweetUrl").value.trim();
+  if (!url){ status("Paste the link to your X post first."); return; }
+  try{
+    status("Dispatch is reading your post…");
+    var r = await fetch(PERMIT_URL, { method:"POST", headers:{"content-type":"application/json"},
+      body: JSON.stringify({ wallet: account, tweetUrl: url }) });
+    var j = null; try{ j = await r.json(); }catch(e){}
+    if (!r.ok || !j || !j.signature){
+      status("Dispatch refused the permit (" + r.status + ")" + (j && j.error ? ": " + j.error : "") +
+        ". Check the post carries this page's address and your mark <b>" + walletCode() + "</b>, and that your account is verified.");
+      return;
+    }
+    var data = claimXData(j.handle, j.deadline, j.signature);
+    await sendTx(data, 0n, "Verified X free surrender");
+  }catch(e){ status("Surrender failed: " + (e.message || e)); }
+}
+async function buy(){
+  try{
+    var n = parseInt($("buyCount").value, 10);
+    var data = SEL.mint + padUint(n) + padAddr(referrer());
+    await sendTx(data, PRICE * BigInt(n), "Bail for " + n + " booking(s)");
+  }catch(e){ status("Bail failed: " + (e.message || e)); }
+}
+async function claimBonus(){
+  try{ await sendTx(SEL.claimBonus, 0n, "Informant bonus collection"); }
+  catch(e){ status("Bonus collection failed: " + (e.message || e)); }
+}
+
+// ---- sharing (the only social ask: pass the link on) ----
+function shareText(){
+  var link = SITE_URL + "?ref=" + (account || "0x0000000000000000000000000000000000000000");
+  return "I just got booked at Precinct 56 — Neon Vice on BSC. 🚨\n\n" +
+    "1,200 mugshots are free: 800 for Agent ID holders, 400 for verified X accounts. Bail for the rest is 0.001 BNB, paid straight to the treasury.\n\n" +
+    "See the most wanted board:\n" + link + "\n\n#NeonVice $VICE";
+}
+function xPostText(){
+  return "Turning myself in at Precinct 56 🚨\n\n" + SITE_URL + "\n\nfile mark: " + walletCode();
+}
+$("shareBtn").addEventListener("click", function(){
+  window.open("https://x.com/intent/tweet?text=" + encodeURIComponent(shareText()), "_blank");
+});
+$("xCompose").addEventListener("click", function(){
+  if (!account){ status("Identify yourself first — the post must carry your file mark."); return; }
+  window.open("https://x.com/intent/tweet?text=" + encodeURIComponent(xPostText()), "_blank");
+});
+$("connectInj").addEventListener("click", connectInjected);
+$("connectWC").addEventListener("click", connectWC);
+$("claimAgentBtn").addEventListener("click", claimAgent);
+$("claimXBtn").addEventListener("click", claimX);
+$("buyBtn").addEventListener("click", buy);
+$("claimBonusBtn").addEventListener("click", claimBonus);
+$("buyCount").addEventListener("change", function(){
+  $("buyCost").textContent = (0.001 * parseInt(this.value, 10)).toFixed(3);
+});
+refreshStats();
+setInterval(refreshStats, 30000);
+diag("terminal live · WalletConnect ready · arrest record loading from BSC");
+</script>
+</body>
+</html>
